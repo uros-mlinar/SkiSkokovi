@@ -1,8 +1,8 @@
 package wafepa.dto;
 
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class TakmicarDTO {
@@ -13,8 +13,7 @@ public class TakmicarDTO {
 	@Size(min = 2, max = 35)
 	private String drzava;
 	private int visina;
-//	@Pattern(regexp="(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
-//			message="Password is not strong enough.")
+	@Email
 	private String email;
 	private int godinaRodjenja;
 	private Long skakaonicaId;

@@ -2,10 +2,8 @@ package wafepa.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
+import wafepa.model.Skakaonica;
 import wafepa.model.Skok;
-import wafepa.model.Takmicar;
 
 public interface SkokService {
 	
@@ -13,4 +11,6 @@ public interface SkokService {
 	List<Skok> findAll();
 	Skok save(Skok toSave);
 	List<Skok> findByTakmicarId(Long id);
+	Double izracunajOcenuSudija(List<Double> ocene);
+	Double izracunajPoeneZaSkok(Skakaonica skakaonica, double daljina);
 }

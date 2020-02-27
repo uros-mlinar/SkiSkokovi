@@ -49,33 +49,8 @@ public class ApiSkokController {
 		Skakaonica skakaonica = skakSer.findOne(skakaonicaId);
 		Skok skok = new Skok();
 		skok.setDaljina(daljina);
-		
-		double total = 0;
-		double max = 0;
-		double min = 0;
-		
-		for (Double ocena : ocene) {
-			if(ocena > max) max = ocena;
-			if(ocena < min) min = ocena;
-		}
-		
-		for (Double ocena : ocene) {
-			if(ocena != max && ocena != min) {
-				total = total + ocena;
-			}
-		}
-		double ocenaSudija = total/3;
-		skok.setOcenaSudija(ocenaSudija);
-		
-		double k = skakaonica.getK();
-		double d = skakaonica.getD();
-		
-		double razlika = daljina - k;
-		
-		double poeniDaljina = 60d + razlika * d; 
-		skok.setPoeniDaljina(poeniDaljina);
-		skok.setZbirPoena(ocenaSudija + poeniDaljina);
-		
+		skok.setOcenaSudija(skokSer.izracunajOcenuSudija(ocene));
+		skok.setPoeniDaljina(skokSer.izracunajPoeneZaSkok(skakaonica, daljina));		
 		
 		return new ResponseEntity<>(skokSer.save(skok), HttpStatus.OK);
 	}
