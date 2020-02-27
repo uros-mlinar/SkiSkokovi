@@ -1,0 +1,74 @@
+<div ng-controller="TakmicariCtrl">
+	<h1>Takmicari</h1>
+	
+	<div class="row">
+		
+		<div class="col-12">
+		
+			<form>
+				<div class="form-group">
+					<label for="ime">Ime i prezime</label>
+					<input class="form-control" id="ime" ng-model="search.ime" />
+				</div>
+				<div class="form-group">
+					<label for="drzava">Drzava</label>
+					<input class="form-control" id="drzava" ng-model="search.drzava"/>
+				</div>
+				<div class="form-group">
+					<label for="godisteOd">Godiste od</label>
+					<input class="form-control" id="godisteOd" ng-model="search.godisteOd"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="godisteDo">Godiste do</label>
+					<input class="form-control" id="godisteDo" ng-model="search.godisteDo"/>
+				</div>
+								
+				<button class="btn btn-primary" ng-click="doSearch()">Trazi</button>
+			</form>
+		
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-12">
+			
+			<div class="btn-group float-right" style="margin-bottom:5px">
+				<button ng-disabled="pageNum == 0" ng-click="changePage(-1)" class="btn btn-primary">Nazad</button>
+				<button ng-disabled="pageNum == totalPages - 1" ng-click="changePage(1)" class="btn btn-primary">Napred</button>
+			</div>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Ime i prezime</th>
+						<th>Drzava</th>
+						<th>G. rodjenja</th>
+						<th>Visina</th>
+						<th>Skakaonica</th>
+						<th>Akcije</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="t in takmicari">
+						<td>{{t.ime}}</td>
+						<td>{{t.drzava}}</td>
+						<td>{{t.godinaRodjenja}}</td>
+						<td>{{t.visina}}</td>
+						<td>{{t.skakaonicaNaziv}}</td>
+						<td>
+							<button class="btn btn-warning" ng-click="goToEdit(t.id)">Izmeni
+							</button>
+							<button class="btn btn-danger" ng-click="doDelete(t.id)">Obrisi
+							</button>	
+							<button class="btn btn-success" ng-click="goToSkokAdd(t.id, t.skakaonicaId)" >Skok
+							</button>		
+						</td>                                                   
+					</tr>
+				</tbody>                                         
+																			
+																				
+			</table>                                    
+		</div>
+	</div>
+</div>

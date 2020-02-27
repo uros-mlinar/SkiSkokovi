@@ -1,0 +1,37 @@
+<div ng-controller="AddSkokCtrl">
+    <h1>Dodavanje skoka</h1>
+    <div class="row">
+
+        <div class="col-12">
+
+            <form>
+                <div class="form-group">
+                    <label for="sudija1">Sudija 1</label>
+                    <input class="form-control" id="sudija1" ng-model="skok.ocena1" />
+                </div>
+                <div class="form-group">
+                    <label for="sudija2">Sudija 1</label>
+                    <input class="form-control" id="sudija2" ng-model="skok.ocena2" />
+                </div>
+                <div class="form-group">
+                    <label for="sudija3">Sudija 1</label>
+                    <input class="form-control" id="sudija3" ng-model="skok.ocena3" />
+                </div>
+                <div class="form-group">
+                    <label for="sudija4">Sudija 1</label>
+                    <input class="form-control" id="sudija4" ng-model="skok.ocena4" />
+                </div>
+                <div class="form-group">
+                    <label for="sudija5">Sudija 1</label>
+                    <input class="form-control" id="sudija5" ng-model="skok.ocena5" />
+                </div>
+                <div class="form-group">
+                    <label for="daljina">Daljina</label>
+                    <input class="form-control" id="daljina" ng-model="skok.daljina" />
+                </div>
+
+                <button class="btn btn-primary" ng-click="doAdd()">Dodaj</button>
+            </form>
+
+        </div>
+    </div>
