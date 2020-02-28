@@ -65,7 +65,8 @@ wafepaApp.controller("TakmicariCtrl", function($scope, $http, $location){
 	}
 
 	$scope.goToSkokAdd = function(id, skakaonicaId){
-		$location.path("/skokovi/add/:id/:skakaonicaId");
+		console.log();
+		$location.path("/skokovi/add/" + id + "/" + skakaonicaId);
 	}
 	
 	$scope.doDelete = function(id){
@@ -96,7 +97,7 @@ wafepaApp.controller("AddTakmicarCtrl", function($scope, $http, $location){
 			function success(res){
 				$scope.skakaonice = res.data;
 			},
-			function error(res){
+			function error(){
 				alert("Nisu dobavljene skakaonice.");
 			}
 		);
@@ -160,8 +161,30 @@ wafepaApp.controller("EditTakmicarCtrl", function($scope, $http, $routeParams, $
 	
 });
 
-wafepaApp.controller("AddSkokCtrl", function($scope, $http, $routeParams, $location){
+wafepaApp.controller("AddSkokCtrl", function($scope, $http, $location, $routeParams){
+	var url = "/api/skokovi";
 
+	$scope.skok = {};
+	$scope.skok.id = $routeParams.id;
+	$scope.skok.skakaonicaId = $routeParams.skakaonicaId;
+	$scope.skok.ocena1 = "";
+	$scope.skok.ocena2 = "";
+	$scope.skok.ocena3 = "";
+	$scope.skok.ocena4 = "";
+	$scope.skok.ocena5 = "";
+
+	$scope.doAdd = function(){
+		console.log($scope.ocene);
+		var promise = $http.post(url, $scope.skok);
+		promise.then(
+			function success(){
+				$location.path("/takmicari");
+			},
+			function error(){
+				alert("Couldn't save the skok");
+			}
+		);
+	}
 });
 
 
@@ -179,7 +202,7 @@ wafepaApp.config(['$routeProvider', function($routeProvider) {
 		.when('/takmicari/edit/:id', {
 			templateUrl : '/app/html/edit-takmicar.html'
 		})
-		.when('/skokovi/add/', {
+		.when('/skokovi/add/:id/:skakaonicaId', {
 			templateUrl : '/app/html/add-skok.html'
 		})
 		.otherwise({
